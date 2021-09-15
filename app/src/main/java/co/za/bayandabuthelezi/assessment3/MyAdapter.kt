@@ -1,0 +1,44 @@
+package co.za.bayandabuthelezi.assessment3
+
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.imageview.ShapeableImageView
+
+class MyAdapter(private val tradeslist : ArrayList<Trades>) :
+    RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
+
+
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_list,
+        parent, false )
+        return MyViewHolder(itemView)
+
+    }
+
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+
+        val currentItem = tradeslist[position]
+        holder.titleImage.setImageResource(currentItem.title_image)
+        holder.tvheading.text = currentItem.TVheading
+        holder.tvtext.text = currentItem.TVtext
+
+    }
+
+    override fun getItemCount(): Int {
+
+        return tradeslist.size
+    }
+
+    class MyViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
+
+        val titleImage : ShapeableImageView = itemView.findViewById(R.id.title_image)
+        val tvheading : TextView = itemView.findViewById(R.id.TVheading)
+        val tvtext : TextView = itemView.findViewById(R.id.TVtext)
+
+    }
+}
